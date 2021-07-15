@@ -1,20 +1,23 @@
 <?php
 
 
-namespace PitekShop\Cart;
+namespace PitekShop\Cart\Facades;
 
+
+use PitekShop\Cart\Contracts\Cart;
+use PitekShop\Cart\Contracts\CartStorage;
 
 class CartFacade
 {
     /**
      * @var CartStorage $cartStorage
      */
-    private $cartStorage;
+    private CartStorage $cartStorage;
 
     /**
      * @var Cart $cart
      */
-    private $cart;
+    private Cart $cart;
 
     /**
      * CartFacade constructor.

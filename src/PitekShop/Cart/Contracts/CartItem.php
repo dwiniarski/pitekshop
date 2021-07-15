@@ -1,8 +1,10 @@
 <?php
 
 
-namespace PitekShop\Cart;
+namespace PitekShop\Cart\Contracts;
 
+
+use PitekShop\Cart\Traits\ContainsMetadata;
 
 abstract class CartItem implements MetadataObject
 {

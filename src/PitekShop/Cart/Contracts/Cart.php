@@ -1,18 +1,26 @@
 <?php
 
 
-namespace PitekShop\Cart;
+namespace PitekShop\Cart\Contracts;
 
+use PitekShop\Cart\Traits\ContainsMetadata;
+
+/**
+ * Class Cart
+ * @package PitekShop\Cart
+ */
 abstract class Cart implements MetadataObject
 {
     use ContainsMetadata;
 
     /**
+     * Array that contains items in a cart
      * @var CartItem[] $items
      */
-    protected $items = [];
+    protected array $items = [];
 
     /**
+     * Returns list of items in this cart instance
      * @return CartItem[]
      */
     public function getItems(): array
@@ -21,6 +29,7 @@ abstract class Cart implements MetadataObject
     }
 
     /**
+     * Sets list of items directly
      * @param CartItem[] $items
      */
     public function setItems(array $items): void
@@ -29,6 +38,8 @@ abstract class Cart implements MetadataObject
     }
 
     /**
+     * Add single item to the cart. If the same item already exists in a cart then the quantity
+     * of this item is just incremented.
      * @param CartItem $cartItem
      */
     public function addItem(CartItem $cartItem): void
@@ -48,7 +59,8 @@ abstract class Cart implements MetadataObject
     }
 
     /**
-     * @return int Number of items in the cart
+     * Resturns number of items in the cart
+     * @return int
      */
     public function numberOfItems(): int
     {
@@ -56,6 +68,7 @@ abstract class Cart implements MetadataObject
     }
 
     /**
+     * Is this cart empty?
      * @return bool
      */
     public function isEmpty(): bool
@@ -64,6 +77,7 @@ abstract class Cart implements MetadataObject
     }
 
     /**
+     * Remove item from this cart by item's unique id
      * @param string $id
      */
     public function removeItem(string $id): void
@@ -74,6 +88,8 @@ abstract class Cart implements MetadataObject
     }
 
     /**
+     * Is this cart confirmed?
+     * This means that all products, shipping, and billing data are confirmed.
      * @return bool
      */
     public function isConfirmed(): bool

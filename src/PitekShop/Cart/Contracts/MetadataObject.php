@@ -1,7 +1,7 @@
 <?php
 
 
-namespace PitekShop\Cart;
+namespace PitekShop\Cart\Contracts;
 
 
 interface MetadataObject

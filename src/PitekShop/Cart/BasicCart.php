@@ -3,22 +3,24 @@
 
 namespace PitekShop\Cart;
 
-class EshopCart extends Cart
+use PitekShop\Cart\Contracts\Cart;
+
+class BasicCart extends Cart
 {
     /**
-     * @return EshopCartSummary
+     * @return CartSummary
      */
-    public function getCartSummary(): EshopCartSummary
+    public function getCartSummary(): CartSummary
     {
         $total = 0;
         $total_monthly = 0;
-        /* @var $item EshopCartItem */
+        /* @var $item BasicCartItem */
         foreach ($this->items as $item) {
             $total += $item->getPrice();
             $total_monthly += $item->getPricePerMonth();
         }
 
-        $cartSummary = new EshopCartSummary();
+        $cartSummary = new CartSummary();
         $cartSummary->setTotalPrice($total);
         $cartSummary->setTotalPriceMonthly($total_monthly);
 

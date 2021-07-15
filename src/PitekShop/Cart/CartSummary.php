@@ -4,7 +4,7 @@
 namespace PitekShop\Cart;
 
 
-class EshopCartSummary
+class CartSummary
 {
     private $total_price_without_discount;
     private $total_price_monthly_without_discount;

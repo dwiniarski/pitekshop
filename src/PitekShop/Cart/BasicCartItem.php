@@ -4,7 +4,7 @@
 namespace PitekShop\Cart;
 
 
-class EshopCartItem extends CartItem
+class BasicCartItem extends CartItem
 {
     
 }
