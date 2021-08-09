@@ -9,7 +9,7 @@ trait ContainsMetadata
     /**
      * @var array $metadata
      */
-    protected $metadata = [];
+    protected array $metadata = [];
 
     /**
      * @return array

@@ -5,6 +5,7 @@ namespace PitekShop\Cart\Contracts;
 
 
 use PitekShop\Cart\Traits\ContainsMetadata;
+use PitekShop\Product\Contracts\Product;
 
 abstract class CartItem implements MetadataObject
 {
@@ -16,15 +17,15 @@ abstract class CartItem implements MetadataObject
     /**
      * @var int $identifier_length
      */
-    protected $identifier_length = 32;
+    protected int $identifier_length = 32;
 
     /**
-     * @var int $product_id
+     * @var Product $product
      */
-    protected $product_id;
+    protected Product $product;
 
     /** @var int $qty */
-    protected $qty;
+    protected int $qty;
 
     /** @var float $price */
     protected $price = 0;
@@ -32,10 +33,10 @@ abstract class CartItem implements MetadataObject
     /** @var float $price_per_month */
     protected $price_per_month = 0;
 
-    public function __construct(int $product_id, int $qty, array $metadata = [])
+    public function __construct(Product $product, int $qty, array $metadata = [])
     {
         $this->id = $this->generateRandomIdentifier();
-        $this->product_id = $product_id;
+        $this->product = $product;
         $this->qty = $qty;
         foreach (array_keys($metadata) as $metadata_key) {
             $this->setMetadataByKey($metadata_key, $metadata[$metadata_key]);
@@ -51,11 +52,11 @@ abstract class CartItem implements MetadataObject
     }
 
     /**
-     * @return int
+     * @return Product
      */
-    public function getProductId(): int
+    public function getProduct(): Product
     {
-        return $this->product_id;
+        return $this->product;
     }
 
 
@@ -119,7 +120,7 @@ abstract class CartItem implements MetadataObject
 
     public function isSameAs(CartItem $cartItem): bool
     {
-        if ($this->getProductId() != $cartItem->getProductId()) {
+        if ($this->getProduct()->getId() != $cartItem->getProduct()->getId()) {
             return false;
         }
         if ($this->getPricePerItem() != $cartItem->getPricePerItem()) {
