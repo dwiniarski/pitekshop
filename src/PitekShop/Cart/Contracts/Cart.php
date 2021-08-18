@@ -38,6 +38,14 @@ abstract class Cart implements MetadataObject
     }
 
     /**
+     * Removes all items from the cart
+     */
+    public function clearItems(): void
+    {
+        $this->setItems(array());
+    }
+
+    /**
      * Add single item to the cart. If the same item already exists in a cart then the quantity
      * of this item is just incremented.
      * @param CartItem $cartItem
