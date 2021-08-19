@@ -20,6 +20,12 @@ abstract class Cart implements MetadataObject
     protected array $items = [];
 
     /**
+     * Contains data of the client
+     * @var ClientData
+     */
+    protected ClientData $clientData;
+
+    /**
      * Returns list of items in this cart instance
      * @return CartItem[]
      */
@@ -35,6 +41,22 @@ abstract class Cart implements MetadataObject
     public function setItems(array $items): void
     {
         $this->items = $items;
+    }
+
+    /**
+     * @return ClientData|null
+     */
+    public function getClientData(): ?ClientData
+    {
+        return $this->clientData;
+    }
+
+    /**
+     * @param ClientData $clientData
+     */
+    public function setClientData(ClientData $clientData): void
+    {
+        $this->clientData = $clientData;
     }
 
     /**
