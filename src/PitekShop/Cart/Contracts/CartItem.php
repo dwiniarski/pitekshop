@@ -28,10 +28,16 @@ abstract class CartItem implements MetadataObject
     protected int $qty;
 
     /** @var float $price */
-    protected $price = 0;
+    protected float $price = 0;
 
     /** @var float $price_per_month */
-    protected $price_per_month = 0;
+    protected float $price_per_month = 0;
+
+    /**
+     * Percent used to calculate price based on provided value
+     * @var float|int
+     */
+    protected float $price_percent = 0;
 
     public function __construct(Product $product, int $qty, array $metadata = [])
     {
@@ -60,46 +66,68 @@ abstract class CartItem implements MetadataObject
     }
 
 
-    public function setPrice($price)
+    /**
+     * @param float|null $price
+     */
+    public function setPricePerItem(?float $price): void
     {
         $this->price = $price;
     }
 
-    public function setPricePerMonth($price)
+    /**
+     * @param float|null $price
+     */
+    public function setPricePerItemPerMonth(?float $price): void
     {
         $this->price_per_month = $price;
     }
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getPricePerItem(): int
+    public function getPricePerItem(): ?float
     {
         return $this->price;
     }
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getPrice(): int
+    public function getPrice(): ?float
     {
-        return $this->price * $this->qty;
+        return $this->getPricePerItem() * $this->qty;
     }
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getPricePerMonthPerItem(): int
+    public function getPricePerMonthPerItem(): ?float
     {
         return $this->price_per_month;
     }
 
     /**
-     * @return int
+     * @return float|null
      */
-    public function getPricePerMonth(): int
+    public function getPricePerMonth(): ?float
     {
-        return $this->price_per_month * $this->qty;
+        return $this->getPricePerMonthPerItem() * $this->qty;
+    }
+
+    /**
+     * @return float|int
+     */
+    public function getPricePercent()
+    {
+        return $this->price_percent;
+    }
+
+    /**
+     * @param float|int $price_percent
+     */
+    public function setPricePercent($price_percent): void
+    {
+        $this->price_percent = $price_percent;
     }
 
     /**
