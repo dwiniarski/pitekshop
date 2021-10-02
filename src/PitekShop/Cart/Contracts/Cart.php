@@ -9,7 +9,7 @@ use PitekShop\Cart\Traits\ContainsMetadata;
  * Class Cart
  * @package PitekShop\Cart
  */
-abstract class Cart implements MetadataObject
+abstract class Cart implements MetadataObject, Arrayable
 {
     use ContainsMetadata;
 

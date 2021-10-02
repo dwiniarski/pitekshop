@@ -26,4 +26,10 @@ class BasicCart extends Cart
 
         return $cartSummary;
     }
+
+    public function toArray(): array
+    {
+        return [];
+    }
+
 }

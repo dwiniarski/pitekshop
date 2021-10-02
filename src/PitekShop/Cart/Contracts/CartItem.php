@@ -7,7 +7,7 @@ namespace PitekShop\Cart\Contracts;
 use PitekShop\Cart\Traits\ContainsMetadata;
 use PitekShop\Product\Contracts\Product;
 
-abstract class CartItem implements MetadataObject
+abstract class CartItem implements MetadataObject, Arrayable
 {
     use ContainsMetadata;
 

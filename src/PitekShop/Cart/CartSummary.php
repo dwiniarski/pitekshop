@@ -4,7 +4,9 @@
 namespace PitekShop\Cart;
 
 
-class CartSummary
+use PitekShop\Cart\Contracts\Arrayable;
+
+class CartSummary implements Arrayable
 {
     private $total_price_without_discount;
     private $total_price_monthly_without_discount;
@@ -91,5 +93,14 @@ class CartSummary
     {
         return $this->total_price_monthly_without_discount - $this->total_price_monthly;
     }
+
+    public function toArray(): array
+    {
+        $response['total_price_without_discount'] = $this->getTotalPriceWithoutDiscount();
+        $response['total_price_monthly_without_discount'] = $this->getTotalPriceMonthlyWithoutDiscount();
+        $response['total_price'] = $this->getTotalPrice();
+        $response['total_price_monthly'] = $this->getTotalPriceMonthly();
+    }
+
 
 }
