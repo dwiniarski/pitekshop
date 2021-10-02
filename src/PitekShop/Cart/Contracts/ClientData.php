@@ -4,7 +4,7 @@
 namespace PitekShop\Cart\Contracts;
 
 
-abstract class ClientData
+abstract class ClientData implements Arrayable
 {
 
 }
